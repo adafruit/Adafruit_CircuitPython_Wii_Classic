@@ -58,13 +58,18 @@ class Wii_Classic:
         not be able to achieve such timing.
     """
 
-    _Values = namedtuple("Values", ("joystick_l", "joystick_r", "l_shoulder", "r_shoulder", "d_pad", "buttons"))
+    _Values = namedtuple(
+        "Values",
+        ("joystick_l", "joystick_r", "l_shoulder", "r_shoulder", "d_pad", "buttons"),
+    )
     _Joystick_L = namedtuple("Joystick_L", ("LEFT_X", "LEFT_Y"))
     _Joystick_R = namedtuple("Joystick_R", ("RIGHT_X", "RIGHT_Y"))
     _L_Shoulder_Analog = namedtuple("L_Shoulder_Analog", ("LEFT_FORCE"))
     _R_Shoulder_Analog = namedtuple("R_Shoulder_Analog", ("RIGHT_FORCE"))
     _D_Pad = namedtuple("D_Pad", ("UP", "DOWN", "LEFT", "RIGHT"))
-    _Buttons = namedtuple("Buttons", ("A", "B", "START", "SELECT", "X", "Y", "HOME", "ZL", "ZR", "L", "R"))
+    _Buttons = namedtuple(
+        "Buttons", ("A", "B", "START", "SELECT", "X", "Y", "HOME", "ZL", "ZR", "L", "R")
+    )
 
     def __init__(
         self, i2c: I2C, address: int = 0x52, i2c_read_delay: float = 0.002
@@ -103,26 +108,32 @@ class Wii_Classic:
             self._d_pad(do_read=False),
             self._buttons(do_read=False),
         )
+
     @property
     def joystick_l(self) -> _Joystick_L:
         """The current left joystick position."""
         return self._joystick_l()
+
     @property
     def joystick_r(self) -> _Joystick_R:
         """The current right joystick position."""
         return self._joystick_r()
+
     @property
     def l_shoulder(self) -> _L_Shoulder_Analog:
         """The current left shoulder button pressure."""
         return self._l_shoulder()
+
     @property
     def r_shoulder(self) -> _R_Shoulder_Analog:
         """The current right shoulder button pressure."""
         return self._r_shoulder()
+
     @property
     def buttons(self) -> _Buttons:  # pylint: disable=invalid-name
         """The current pressed state of buttons"""
         return self._buttons()
+
     @property
     def d_pad(self) -> _D_Pad:
         """The current pressed state of d-pad buttons"""
@@ -132,50 +143,64 @@ class Wii_Classic:
         if do_read:
             self._read_data()
         return self._Joystick_L((self.buffer[0] & 0x3F), (self.buffer[1] & 0x3F))
+
     def _joystick_r(self, do_read: bool = True) -> _Joystick_R:
         if do_read:
             self._read_data()
-        return self._Joystick_R(((self.buffer[0] & 0xC0) >> 3) | ((self.buffer[1] & 0xC0) >> 5) | ((self.buffer[2] & 0x40) >> 7),
-                                (self.buffer[2] & 0x1F))
+        return self._Joystick_R(
+            ((self.buffer[0] & 0xC0) >> 3)
+            | ((self.buffer[1] & 0xC0) >> 5)
+            | ((self.buffer[2] & 0x40) >> 7),
+            (self.buffer[2] & 0x1F),
+        )
+
     def _l_shoulder(self, do_read: bool = True) -> _L_Shoulder_Analog:
         if do_read:
             self._read_data()
-        return self._L_Shoulder_Analog(((self.buffer[2] & 0x60) >> 2) | ((self.buffer[3] & 0xE0) >> 5))
+        return self._L_Shoulder_Analog(
+            ((self.buffer[2] & 0x60) >> 2) | ((self.buffer[3] & 0xE0) >> 5)
+        )
+
     def _r_shoulder(self, do_read: bool = True) -> _R_Shoulder_Analog:
         if do_read:
             self._read_data()
         return self._R_Shoulder_Analog(self.buffer[3] & 0x1C)
+
     def _joystick_l(self, do_read: bool = True) -> _Joystick_L:
         if do_read:
             self._read_data()
         return self._Joystick_L((self.buffer[0] & 0x3F), (self.buffer[1] & 0x3F))
+
     def _buttons(self, do_read: bool = True) -> _Buttons:
         if do_read:
             self._read_data()
         return self._Buttons(
-            not bool(self.buffer[5] & 0x10), # A
-            not bool(self.buffer[5] & 0x40), # B
-            not bool(self.buffer[4] & 0x04), # Start
-            not bool(self.buffer[4] & 0x10), # Select
-            not bool(self.buffer[5] & 0x08), # X
-            not bool(self.buffer[5] & 0x20), # Y
-            not bool(self.buffer[4] & 0x08), # Home
-            not bool(self.buffer[5] & 0x80), # ZL
-            not bool(self.buffer[5] & 0x04), # ZR
-            not bool(self.buffer[4] & 0x20), # L
-            not bool(self.buffer[4] & 0x02), # R
+            not bool(self.buffer[5] & 0x10),  # A
+            not bool(self.buffer[5] & 0x40),  # B
+            not bool(self.buffer[4] & 0x04),  # Start
+            not bool(self.buffer[4] & 0x10),  # Select
+            not bool(self.buffer[5] & 0x08),  # X
+            not bool(self.buffer[5] & 0x20),  # Y
+            not bool(self.buffer[4] & 0x08),  # Home
+            not bool(self.buffer[5] & 0x80),  # ZL
+            not bool(self.buffer[5] & 0x04),  # ZR
+            not bool(self.buffer[4] & 0x20),  # L
+            not bool(self.buffer[4] & 0x02),  # R
         )
+
     def _d_pad(self, do_read: bool = True) -> _D_Pad:
         if do_read:
             self._read_data()
         return self._D_Pad(
-            not bool(self.buffer[5] & 0x01), # Up
-            not bool(self.buffer[4] & 0x40), # Down
-            not bool(self.buffer[5] & 0x02), # Left
-            not bool(self.buffer[4] & 0x80), # Right
+            not bool(self.buffer[5] & 0x01),  # Up
+            not bool(self.buffer[4] & 0x40),  # Down
+            not bool(self.buffer[5] & 0x02),  # Left
+            not bool(self.buffer[4] & 0x80),  # Right
         )
+
     def _read_data(self) -> bytearray:
         return self._read_register(b"\x00")
+
     def _read_register(self, address) -> bytearray:
         with self.i2c_device as i2c:
             i2c.write(address)

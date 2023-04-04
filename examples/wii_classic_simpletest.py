@@ -15,7 +15,7 @@ while True:
     left_pressure = ctrl_pad.l_shoulder
     right_pressure = ctrl_pad.r_shoulder
     print("joystick_l = {},{}".format(left_x, left_y))
-    print("joystick_r = {},{}".format(right_X, left_y))
+    print("joystick_r = {},{}".format(right_x, left_y))
     print("left shoulder = {}".format(left_pressure))
     print("right shoulder = {}".format(right_pressure))
     if ctrl_pad.buttons.A:

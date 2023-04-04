@@ -32,8 +32,8 @@ autodoc_preserve_defaults = True
 
 
 intersphinx_mapping = {
-    "python": ("https://docs.python.org/3", None),"BusDevice": ("https://docs.circuitpython.org/projects/busdevice/en/latest/", None),
-    
+    "python": ("https://docs.python.org/3", None),
+    "BusDevice": ("https://docs.circuitpython.org/projects/busdevice/en/latest/", None),
     "CircuitPython": ("https://docs.circuitpython.org/en/latest/", None),
 }
 
@@ -79,13 +79,7 @@ language = "en"
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = [
-    "_build",
-    "Thumbs.db",
-    ".DS_Store",
-    ".env",
-    "CODE_OF_CONDUCT.md",
-]
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", ".env", "CODE_OF_CONDUCT.md"]
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -163,7 +157,7 @@ latex_documents = [
         "Adafruit CircuitPython Wii_Classic Library Documentation",
         author,
         "manual",
-    ),
+    )
 ]
 
 # -- Options for manual page output ---------------------------------------
@@ -177,7 +171,7 @@ man_pages = [
         "Adafruit CircuitPython Wii_Classic Library Documentation",
         [author],
         1,
-    ),
+    )
 ]
 
 # -- Options for Texinfo output -------------------------------------------
@@ -194,5 +188,5 @@ texinfo_documents = [
         "Adafruit_CircuitPython_Wii_Classic_Library",
         "One line description of project.",
         "Miscellaneous",
-    ),
+    )
 ]
