@@ -115,7 +115,7 @@ Usage Example
 			print("button A")
 		if ctrl_pad.buttons.B:
 			print("button B")
-		if CTRL_PAD.d_pad.UP:
+		if ctrl_pad.d_pad.UP:
 			print("button Up")
 		time.sleep(0.5)
 
