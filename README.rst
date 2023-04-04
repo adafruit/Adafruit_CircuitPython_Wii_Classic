@@ -97,30 +97,31 @@ Or the following command to update an existing version:
 Usage Example
 =============
 
-.. import time
-import board
-import adafruit_wii_classic
-#import adafruit_nunchuk
+.. code-block:: python
 
-i2c = board.STEMMA_I2C()
-ctrl_pad = adafruit_wii_classic.Wii_Classic(i2c)
+	import time
+	import board
+	import adafruit_wii_classic
 
-while True:
-	left_x, left_y = ctrl_pad.joystick_l
-    right_x, right_y = ctrl_pad.joystick_r
-    left_pressure = ctrl_pad.l_shoulder
-    right_pressure = ctrl_pad.r_shoulder
-	print("joystick_l = {},{}".format(left_x, left_y))
-    print("joystick_r = {},{}".format(right_X, left_y))
-    print("left shoulder = {}".format(left_pressure))
-    print("right shoulder = {}".format(right_pressure))
-	if ctrl_pad.buttons.A:
-        print("button A")
-    if ctrl_pad.buttons.B:
-        print("button B")
-	if CTRL_PAD.d_pad.UP:
-        print("button Up")
-	time.sleep(0.5)
+	i2c = board.STEMMA_I2C()
+	ctrl_pad = adafruit_wii_classic.Wii_Classic(i2c)
+
+	while True:
+		left_x, left_y = ctrl_pad.joystick_l
+		right_x, right_y = ctrl_pad.joystick_r
+		left_pressure = ctrl_pad.l_shoulder
+		right_pressure = ctrl_pad.r_shoulder
+		print("joystick_l = {},{}".format(left_x, left_y))
+		print("joystick_r = {},{}".format(right_X, left_y))
+		print("left shoulder = {}".format(left_pressure))
+		print("right shoulder = {}".format(right_pressure))
+		if ctrl_pad.buttons.A:
+			print("button A")
+		if ctrl_pad.buttons.B:
+			print("button B")
+		if CTRL_PAD.d_pad.UP:
+			print("button Up")
+		time.sleep(0.5)
 
 Documentation
 =============
