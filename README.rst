@@ -37,8 +37,7 @@ This is easily achieved by downloading
 or individual libraries can be installed using
 `circup <https://github.com/adafruit/circup>`_.
 
-.. todo:: Describe the Adafruit product this library works with. For PCBs, you can also add the
-image from the assets folder in the PCB's GitHub repo.
+Works with the Wii Nunchuck Breakout Adapter and a Wii Classic Controller.
 
 `Purchase one from the Adafruit shop <http://www.adafruit.com/products/4836>`_
 Installing from PyPI
