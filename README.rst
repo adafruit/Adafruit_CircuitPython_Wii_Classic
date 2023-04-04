@@ -39,7 +39,8 @@ or individual libraries can be installed using
 
 Works with the Wii Nunchuck Breakout Adapter and a Wii Classic Controller.
 
-`Purchase one from the Adafruit shop <http://www.adafruit.com/products/4836>`_
+`Purchase one from the Adafruit shop <http://www.adafruit.com/products/4836>`_.
+
 Installing from PyPI
 =====================
 .. note:: This library is not available on PyPI yet. Install documentation is included
