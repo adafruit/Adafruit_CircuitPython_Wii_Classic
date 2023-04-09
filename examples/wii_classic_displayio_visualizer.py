@@ -2,13 +2,13 @@
 # SPDX-License-Identifier: MIT
 
 import board
-import adafruit_wii_classic
 import terminalio
 import displayio
 import simpleio
 from adafruit_display_text import label
 from adafruit_display_shapes.circle import Circle
 import adafruit_ili9341
+import adafruit_wii_classic
 
 displayio.release_displays()
 
