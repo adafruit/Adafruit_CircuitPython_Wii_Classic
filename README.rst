@@ -105,8 +105,8 @@ Usage Example
 	while True:
 		left_x, left_y = ctrl_pad.joystick_l
 		right_x, right_y = ctrl_pad.joystick_r
-		left_pressure = ctrl_pad.l_shoulder
-		right_pressure = ctrl_pad.r_shoulder
+		left_pressure = ctrl_pad.l_shoulder.LEFT_FORCE
+		right_pressure = ctrl_pad.r_shoulder.RIGHT_FORCE
 		print("joystick_l = {},{}".format(left_x, left_y))
 		print("joystick_r = {},{}".format(right_X, left_y))
 		print("left shoulder = {}".format(left_pressure))
@@ -116,7 +116,7 @@ Usage Example
 		if ctrl_pad.buttons.B:
 			print("button B")
 		if ctrl_pad.d_pad.UP:
-			print("button Up")
+			print("d_pad Up")
 		time.sleep(0.5)
 
 Documentation
