@@ -27,7 +27,7 @@ bg_tilegrid = displayio.TileGrid(bg, pixel_shader=bg.pixel_shader)
 # Make the display context
 splash = displayio.Group()
 splash.append(bg_tilegrid)
-display.show(splash)
+display.root_group = splash
 
 i2c = board.STEMMA_I2C()
 ctrl_pad = adafruit_wii_classic.Wii_Classic(i2c)
