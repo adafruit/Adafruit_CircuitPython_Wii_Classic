@@ -5,6 +5,7 @@ import board
 import terminalio
 import displayio
 
+# Support 8.x.x and 9.x.x. Can be simplified after 8.x.x is discontinued as a stable release.
 try:
     from fourwire import FourWire
 except ImportError:
