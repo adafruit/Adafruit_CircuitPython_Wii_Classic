@@ -4,6 +4,13 @@
 import board
 import terminalio
 import displayio
+
+# Support 8.x.x and 9.x.x. Can be simplified after 8.x.x is discontinued as a stable release.
+try:
+    from fourwire import FourWire
+except ImportError:
+    from displayio import FourWire
+
 import simpleio
 from adafruit_display_text import label
 from adafruit_display_shapes.circle import Circle
@@ -16,9 +23,7 @@ spi = board.SPI()
 tft_cs = board.A2
 tft_dc = board.A1
 
-display_bus = displayio.FourWire(
-    spi, command=tft_dc, chip_select=tft_cs, reset=board.A3
-)
+display_bus = FourWire(spi, command=tft_dc, chip_select=tft_cs, reset=board.A3)
 display = adafruit_ili9341.ILI9341(display_bus, width=320, height=240)
 
 bg = displayio.OnDiskBitmap("/wii_classic.bmp")
