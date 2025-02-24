@@ -28,10 +28,12 @@ Implementation Notes
 
 import time
 from collections import namedtuple
+
 from adafruit_bus_device.i2c_device import I2CDevice
 
 try:
     import typing  # pylint: disable=unused-import
+
     from busio import I2C
 except ImportError:
     pass
@@ -66,9 +68,7 @@ class Wii_Classic:
         "Buttons", ("A", "B", "START", "SELECT", "X", "Y", "HOME", "ZL", "ZR", "L", "R")
     )
 
-    def __init__(
-        self, i2c: I2C, address: int = 0x52, i2c_read_delay: float = 0.002
-    ) -> None:
+    def __init__(self, i2c: I2C, address: int = 0x52, i2c_read_delay: float = 0.002) -> None:
         print("Connecting to controller...")
         for i in range(10):
             try:
@@ -87,9 +87,9 @@ class Wii_Classic:
         with self.i2c_device as i2c_dev:
             # turn off encrypted data
             # http://wiibrew.org/wiki/Wiimote/Extension_Controllers
-            i2c_dev.write(b"\xF0\x55")
+            i2c_dev.write(b"\xf0\x55")
             time.sleep(_I2C_INIT_DELAY)
-            i2c_dev.write(b"\xFB\x00")
+            i2c_dev.write(b"\xfb\x00")
 
     @property
     def values(self) -> _Values:

@@ -1,20 +1,15 @@
 # SPDX-FileCopyrightText: 2023 Liz Clark for Adafruit Industries
 # SPDX-License-Identifier: MIT
 
-import board
-import terminalio
-import displayio
-
-# Support 8.x.x and 9.x.x. Can be simplified after 8.x.x is discontinued as a stable release.
-try:
-    from fourwire import FourWire
-except ImportError:
-    from displayio import FourWire
-
-import simpleio
-from adafruit_display_text import label
-from adafruit_display_shapes.circle import Circle
 import adafruit_ili9341
+import board
+import displayio
+import simpleio
+import terminalio
+from adafruit_display_shapes.circle import Circle
+from adafruit_display_text import label
+from fourwire import FourWire
+
 import adafruit_wii_classic
 
 displayio.release_displays()
